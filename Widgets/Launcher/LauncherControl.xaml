@@ -1,0 +1,64 @@
+<UserControl x:Class="DesktopWidget.Widgets.LauncherControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    mc:Ignorable="d"
+    d:DesignHeight="120" d:DesignWidth="180">
+
+    <Border x:Name="RootBorder" Padding="8" Background="#AA222222" CornerRadius="6" IsHitTestVisible="True">
+        <StackPanel>
+
+            <!-- Header row -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="24" />
+                    <ColumnDefinition Width="24" />  <!-- ⭐ Tambah kolom untuk tombol Exit -->
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Foreground="White" FontWeight="Bold" Text="Launcher" Margin="0,0,0,6" />
+
+                <!-- Hide to Tray -->
+                <Button x:Name="HideLauncherBtn" Grid.Column="1"
+                        Width="20" Height="20" Margin="4,0,0,0"
+                        Click="HideLauncherBtn_Click"
+                        Content="⤵" ToolTip="Hide to tray" />
+
+                <!-- ⭐ Exit Button -->
+                <Button x:Name="ExitBtn" Grid.Column="2"
+                        Width="20" Height="20"
+                        Margin="4,0,0,0"
+                        Click="ExitBtn_Click"
+                        Content="✖" ToolTip="Exit Application" 
+                        Foreground="Red" />
+            </Grid>
+
+            <!-- Widget toggles -->
+            <CheckBox x:Name="ClockCheckbox" Content="Clock" IsChecked="True"
+                      Checked="Checkbox_Changed" Unchecked="Checkbox_Changed" Foreground="White" />
+
+            <CheckBox x:Name="WeatherCheckbox" Content="Weather" IsChecked="True"
+                      Checked="Checkbox_Changed" Unchecked="Checkbox_Changed" Foreground="White" />
+
+            <CheckBox x:Name="VisualizerCheckbox" Content="Visualizer" IsChecked="True"
+                      Checked="Checkbox_Changed" Unchecked="Checkbox_Changed" Foreground="White" />
+
+            <!-- Settings expand -->
+            <ToggleButton x:Name="ShowSettingsBtn" Content="Settings"
+                          Margin="0,6,0,0" Foreground="black"
+                          Click="ShowSettingsBtn_Click" />
+
+            <StackPanel x:Name="LauncherSettingsPanel"
+                        Visibility="Collapsed" Margin="0,6,0,0">
+
+                <Button Content="Clock: Resize" Click="ClockResize_Click" Margin="0,2,0,0" />
+                <Button Content="Weather: Resize" Click="WeatherResize_Click" Margin="0,2,0,0" />
+                <Button Content="Visualizer: Resize" Click="VisualizerResize_Click" Margin="0,2,0,0" />
+                <Button Content="Undo (Ctrl+Z)" Click="Undo_Click" Margin="0,6,0,0" />
+            </StackPanel>
+
+        </StackPanel>
+    </Border>
+
+</UserControl>

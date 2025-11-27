@@ -1,0 +1,43 @@
+# Build folders
+bin/
+obj/
+out/
+publish/
+Release/
+Debug/
+
+# Visual Studio stuff
+.vs/
+*.user
+*.suo
+
+# Build artifacts
+*.exe
+*.dll
+*.pdb
+*.cache
+*.log
+
+# WPF auto-generated files
+GeneratedFiles/
+*.g.cs
+*.g.i.cs
+
+# NuGet
+*.nupkg
+packages/
+project.lock.json
+
+# Compiled resources
+*.baml
+
+# OS files
+Thumbs.db
+desktop.ini
+
+# Rider / JetBrains
+.idea/
+*.iml
+
+# Dotnet publish output
+/artifacts/

@@ -1,0 +1,100 @@
+<UserControl
+    x:Class="DesktopWidget.Widgets.WeatherWidget"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Width="300"
+    Height="150">
+
+    <Border
+        x:Name="WeatherPanel"
+        Padding="10"
+        Background="#01000000"
+        CornerRadius="15"
+        IsHitTestVisible="True"
+        MouseLeftButtonDown="Panel_MouseLeftButtonDown">
+
+        <Border.RenderTransform>
+            <TransformGroup>
+                <RotateTransform x:Name="WeatherRotate" Angle="0" CenterX="0.5" CenterY="0.5" />
+                <SkewTransform x:Name="WeatherSkew" AngleX="0" AngleY="0" />
+            </TransformGroup>
+        </Border.RenderTransform>
+
+        <Border.ContextMenu>
+            <ContextMenu>
+                <MenuItem Click="OpenSettings_Click" Header="⚙ Settings" />
+                <Separator />
+
+                <MenuItem Header="Resize">
+                    <MenuItem Click="ResizeWeather_SetWidth" Header="Set Lebar…" />
+                    <MenuItem Click="ResizeWeather_SetHeight" Header="Set Tinggi…" />
+                </MenuItem>
+                <MenuItem Header="Rotate">
+                    <MenuItem Click="RotateWeather_Set" Header="Set Rotasi…" />
+                </MenuItem>
+                <MenuItem Header="Skew">
+                    <MenuItem Click="SkewWeather_SetX" Header="Set Skew X…" />
+                    <MenuItem Click="SkewWeather_SetY" Header="Set Skew Y…" />
+                </MenuItem>
+                <MenuItem Header="Set Z-Index…" Click="SetWeatherZIndex" />
+
+
+                <MenuItem Click="CloseBtn_Click" Header="❌ Exit Widget" />
+            </ContextMenu>
+        </Border.ContextMenu>
+
+        <Viewbox Stretch="Uniform">
+            <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="100" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                <TextBlock
+                    x:Name="WeatherTemp"
+                    HorizontalAlignment="Left"
+                    FontSize="48"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    Text="+30°C">
+                    
+                </TextBlock>
+
+                <TextBlock
+                    x:Name="WeatherLocation"
+                    Margin="0,0,0,0"
+                    HorizontalAlignment="Left"
+                    FontSize="20"
+                    Foreground="White"
+                    Text="Tokyo" />
+
+                <TextBlock
+                    x:Name="WeatherSummary"
+                    Margin="0,0,0,0"
+                    HorizontalAlignment="Left"
+                    FontSize="14"
+                    Foreground="White"
+                    Text="Clear Sky" />
+
+                <TextBlock
+                    x:Name="WeatherDetails"
+                    HorizontalAlignment="Left"
+                    FontSize="12"
+                    Foreground="LightGray"
+                    Text="Humidity 80%, Wind 5km/h" />
+            </StackPanel>
+
+
+            <Image
+                x:Name="WeatherIcon"
+                Grid.Column="1"
+                Width="80"
+                Height="80"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Stretch="Uniform" />
+            </Grid>
+        </Viewbox>
+    </Border>
+</UserControl>

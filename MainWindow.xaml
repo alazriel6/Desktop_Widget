@@ -1,0 +1,193 @@
+﻿<Window
+    x:Class="DesktopWidget.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:widgets="clr-namespace:DesktopWidget.Widgets"
+    xmlns:local="clr-namespace:DesktopWidget.Widgets"
+    AllowsTransparency="True"
+    Background="Transparent"
+    ResizeMode="NoResize"
+    ShowInTaskbar="False"
+    WindowStyle="None"
+        Width="800"
+    Height="600"
+    Icon="Assets/Icons/app.ico">
+
+    <ScrollViewer
+        x:Name="RootScroll"
+        HorizontalScrollBarVisibility="Disabled"
+        VerticalScrollBarVisibility="Disabled"
+        Background="Transparent">
+    <Canvas
+        x:Name="RootCanvas"
+        Background="Transparent"
+        IsHitTestVisible="true">
+<local:ClockWidget x:Name="ClockWidgetControl" />
+
+        <!-- Launcher (now a reusable control) -->
+        <widgets:LauncherControl x:Name="LauncherControl" Canvas.Left="10" Canvas.Top="10" />
+
+        <!--  weather  -->
+        <widgets:WeatherWidget x:Name="WeatherWidget" Canvas.Left="400" Canvas.Top="50" />
+
+        <!--  visualizer  -->
+        <widgets:VisualizerWidget x:Name="VisualizerWidget" Canvas.Left="0" Canvas.Top="250" Width="350" Height="100" />
+
+        <!--  Settings Panel (Drag-able + Tombol X)  -->
+        <Border
+            x:Name="SettingsPanel"
+            Canvas.Top="50"
+            Canvas.Right="20"
+            Width="250"
+            Background="#DD222222"
+            CornerRadius="8"
+            MouseLeftButtonDown="Panel_MouseLeftButtonDown"
+            Visibility="Collapsed">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35" />
+                    <!--  Header  -->
+                    <RowDefinition Height="*" />
+                    <!--  Isi  -->
+                </Grid.RowDefinitions>
+
+                <!--  🟦 Header Drag Area  -->
+                <Border
+                    Grid.Row="0"
+                    Background="#333333"
+                    CornerRadius="8,8,0,0">
+                    <Grid>
+                        <TextBlock
+                            Margin="10,0,0,0"
+                            VerticalAlignment="Center"
+                            FontSize="14"
+                            Foreground="White"
+                            Text="Settings" />
+
+                        <!--  ❌ Tombol X  -->
+                        <Button
+                            Width="25"
+                            Height="25"
+                            Margin="0,0,5,0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Click="CloseSettings_Click"
+                            Content="✖"
+                            FontWeight="Bold"
+                            Foreground="White" />
+                    </Grid>
+                </Border>
+
+                <!--  📝 Isi Panel Settings  -->
+                <StackPanel Grid.Row="1" Margin="10">
+                    <TextBlock
+                        FontSize="12"
+                        Foreground="White"
+                        Text="Clock Color" />
+                    <DockPanel Margin="0,5,0,10">
+                        <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                            <Border x:Name="ClockColorSwatch" Width="24" Height="16" Background="White" BorderBrush="Gray" BorderThickness="1" VerticalAlignment="Center" />
+                            <TextBlock x:Name="ClockColorText" Text="White" Foreground="White" Margin="8,0,0,0" VerticalAlignment="Center" />
+                        </StackPanel>
+                        <Button Content="Pick..." Width="60" Margin="6,0,0,0" Click="ClockColorPick_Click" />
+                    </DockPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,2,0,10">
+                        <Button Width="70" Margin="0,0,6,0" Click="ResetClockSize_Click">Reset Size</Button>
+                        <Button Width="70" Margin="0,0,6,0" Click="ResetClockRotate_Click">Reset Rotate</Button>
+                        <Button Width="70" Click="ResetClockSkew_Click">Reset Skew</Button>
+                    </StackPanel>
+
+                    <!--  WEATHER TEMP COLOR  -->
+                    <TextBlock
+                        FontSize="12"
+                        Foreground="White"
+                        Text="Weather Temp Color" />
+                    <DockPanel Margin="0,5,0,10">
+                        <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                            <Border x:Name="WeatherTempColorSwatch" Width="24" Height="16" Background="White" BorderBrush="Gray" BorderThickness="1" VerticalAlignment="Center" />
+                            <TextBlock x:Name="WeatherTempColorText" Text="White" Foreground="White" Margin="8,0,0,0" VerticalAlignment="Center" />
+                        </StackPanel>
+                        <Button Content="Pick..." Width="60" Margin="6,0,0,0" Click="WeatherTempColorPick_Click" />
+                    </DockPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,2,0,10">
+                        <Button Width="70" Margin="0,0,6,0" Click="ResetWeatherSize_Click">Reset Size</Button>
+                        <Button Width="70" Margin="0,0,6,0" Click="ResetWeatherRotate_Click">Reset Rotate</Button>
+                        <Button Width="70" Click="ResetWeatherSkew_Click">Reset Skew</Button>
+                    </StackPanel>
+
+                    <!--  WEATHER LOCATION COLOR  -->
+                    <TextBlock
+                        FontSize="12"
+                        Foreground="White"
+                        Text="Weather Location Color" />
+                    <DockPanel Margin="0,5,0,10">
+                        <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                            <Border x:Name="WeatherLocationColorSwatch" Width="24" Height="16" Background="White" BorderBrush="Gray" BorderThickness="1" VerticalAlignment="Center" />
+                            <TextBlock x:Name="WeatherLocationColorText" Text="White" Foreground="White" Margin="8,0,0,0" VerticalAlignment="Center" />
+                        </StackPanel>
+                        <Button Content="Pick..." Width="60" Margin="6,0,0,0" Click="WeatherLocationColorPick_Click" />
+                    </DockPanel>
+
+                    <!--  WEATHER SUMMARY COLOR  -->
+                    <TextBlock
+                        FontSize="12"
+                        Foreground="White"
+                        Text="Weather Summary Color" />
+                    <DockPanel Margin="0,5,0,10">
+                        <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                            <Border x:Name="WeatherSummaryColorSwatch" Width="24" Height="16" Background="White" BorderBrush="Gray" BorderThickness="1" VerticalAlignment="Center" />
+                            <TextBlock x:Name="WeatherSummaryColorText" Text="White" Foreground="White" Margin="8,0,0,0" VerticalAlignment="Center" />
+                        </StackPanel>
+                        <Button Content="Pick..." Width="60" Margin="6,0,0,0" Click="WeatherSummaryColorPick_Click" />
+                    </DockPanel>
+
+                    <!--  WEATHER DETAILS COLOR  -->
+                    <TextBlock
+                        FontSize="12"
+                        Foreground="White"
+                        Text="Weather Details Color" />
+                    <DockPanel Margin="0,5,0,10">
+                        <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                            <Border x:Name="WeatherDetailsColorSwatch" Width="24" Height="16" Background="White" BorderBrush="Gray" BorderThickness="1" VerticalAlignment="Center" />
+                            <TextBlock x:Name="WeatherDetailsColorText" Text="White" Foreground="White" Margin="8,0,0,0" VerticalAlignment="Center" />
+                        </StackPanel>
+                        <Button Content="Pick..." Width="60" Margin="6,0,0,0" Click="WeatherDetailsColorPick_Click" />
+                    </DockPanel>
+
+                    <!--  VISUALIZER COLOR  -->
+                    <TextBlock
+                        FontSize="12"
+                        Foreground="White"
+                        Text="Visualizer Color" />
+                    <DockPanel Margin="0,5,0,10">
+                        <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                            <Border x:Name="VisualizerColorSwatch" Width="24" Height="16" Background="Aqua" BorderBrush="Gray" BorderThickness="1" VerticalAlignment="Center" />
+                            <TextBlock x:Name="VisualizerColorText" Text="Aqua" Foreground="White" Margin="8,0,0,0" VerticalAlignment="Center" />
+                        </StackPanel>
+                        <Button Content="Pick..." Width="60" Margin="6,0,0,0" Click="VisualizerColorPick_Click" />
+                    </DockPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,2,0,10">
+                        <Button Width="70" Margin="0,0,6,0" Click="ResetVisualizerSize_Click">Reset Size</Button>
+                        <Button Width="70" Margin="0,0,6,0" Click="ResetVisualizerRotate_Click">Reset Rotate</Button>
+                        <Button Width="70" Click="ResetVisualizerSkew_Click">Reset Skew</Button>
+                    </StackPanel>
+
+                    <Button
+                        Margin="0,10,0,0"
+                        Click="CloseBtn_Click"
+                        Content="Exit Widget" />
+
+                    <Button
+                        Margin="0,10,0,0"
+                        Click="RestoreDefault_Click"
+                        Content="Restore Default Position" />
+
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Canvas>
+    </ScrollViewer>
+</Window>

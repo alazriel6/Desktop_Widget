@@ -1,0 +1,102 @@
+<UserControl
+    x:Class="DesktopWidget.Widgets.ClockWidget"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    x:Name="ClockControl"
+        Width="200"
+        Height="100">
+
+    <Border
+        x:Name="ClockPanel"
+        Padding="10"
+        Background="#01000000"
+        CornerRadius="10"
+        IsHitTestVisible="True"
+        MouseLeftButtonDown="Panel_MouseLeftButtonDown">
+
+        <Border.RenderTransform>
+            <TransformGroup>
+                <RotateTransform x:Name="ClockRotate" Angle="0" CenterX="0.5" CenterY="0.5" />
+                <SkewTransform x:Name="ClockSkew" AngleX="0" AngleY="0" />
+            </TransformGroup>
+        </Border.RenderTransform>
+
+        <Border.ContextMenu>
+            <ContextMenu>
+                <MenuItem Click="OpenSettings_Click" Header="⚙ Settings" />
+                <Separator />
+                <MenuItem Header="Resize">
+                    <MenuItem Click="ResizeClock_SetWidth" Header="Set Lebar…" />
+                    <MenuItem Click="ResizeClock_SetHeight" Header="Set Tinggi…" />
+                </MenuItem>
+                <MenuItem Header="Rotate">
+                    <MenuItem Click="RotateClock_Set" Header="Set Rotasi…" />
+                </MenuItem>
+                <MenuItem Header="Skew">
+                    <MenuItem Click="SkewClock_SetX" Header="Set Skew X…" />
+                    <MenuItem Click="SkewClock_SetY" Header="Set Skew Y…" />
+                </MenuItem>
+                <MenuItem Header="Set Z-Index…" Click="SetClockZIndex" />
+                <MenuItem Click="CloseBtn_Click" Header="❌ Exit Widget" />
+            </ContextMenu>
+        </Border.ContextMenu>
+
+        <Viewbox Stretch="Uniform">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <!-- Hari besar -->
+            <TextBlock
+                x:Name="DayText"
+                HorizontalAlignment="Center"
+                FontFamily="pack://application:,,,/Fonts/#Anurati"
+                FontSize="125"
+                Foreground="White"
+                Text="MONDAY"
+                TextOptions.TextFormattingMode="Display"
+                TextOptions.TextRenderingMode="Aliased">
+                <TextBlock.Effect>
+                    <DropShadowEffect
+                        BlurRadius="0"
+                        Opacity="100"
+                        ShadowDepth="10"
+                        Color="Black" />
+                </TextBlock.Effect>
+            </TextBlock>
+
+            <!-- Tanggal & Waktu -->
+            <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+                <TextBlock
+                    x:Name="DateText"
+                    HorizontalAlignment="Center"
+                    FontFamily="pack://application:,,,/Fonts/#Quicksand"
+                    FontSize="20"
+                    Foreground="LightGray"
+                    Text="29 MAY 2023">
+                    <TextBlock.Effect>
+                        <DropShadowEffect
+                            BlurRadius="0"
+                            Opacity="100"
+                            ShadowDepth="2"
+                            Color="Black" />
+                    </TextBlock.Effect>
+                </TextBlock>
+
+                <TextBlock
+                    x:Name="TimeText"
+                    HorizontalAlignment="Center"
+                    FontFamily="pack://application:,,,/Fonts/#Quicksand"
+                    FontSize="20"
+                    Foreground="LightGray"
+                    Text="12:59">
+                    <TextBlock.Effect>
+                        <DropShadowEffect
+                            BlurRadius="0"
+                            Opacity="100"
+                            ShadowDepth="2"
+                            Color="Black" />
+                    </TextBlock.Effect>
+                </TextBlock>
+            </StackPanel>
+            </StackPanel>
+        </Viewbox>
+    </Border>
+</UserControl>

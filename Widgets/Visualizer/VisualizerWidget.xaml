@@ -1,0 +1,52 @@
+<UserControl
+    x:Class="DesktopWidget.Widgets.VisualizerWidget"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Width="350"
+    Height="100">
+
+    <Border
+        x:Name="VisualizerPanel"
+        Padding="10"
+        Background="#01000000"
+        CornerRadius="10"
+        IsHitTestVisible="True"
+        MouseLeftButtonDown="Panel_MouseLeftButtonDown">
+
+        <Border.RenderTransform>
+            <TransformGroup>
+                <RotateTransform x:Name="VisualizerRotate" Angle="0" />
+                <SkewTransform x:Name="VisualizerSkew" AngleX="0" AngleY="0" />
+            </TransformGroup>
+        </Border.RenderTransform>
+
+        <Border.ContextMenu>
+            <ContextMenu>
+                <MenuItem Click="OpenSettings_Click" Header="⚙ Settings" />
+                <Separator />
+                <MenuItem Header="Resize">
+                    <MenuItem Click="ResizeVisualizer_SetWidth" Header="Set Lebar…" />
+                    <MenuItem Click="ResizeVisualizer_SetHeight" Header="Set Tinggi…" />
+                </MenuItem>
+                <MenuItem Header="Rotate">
+                    <MenuItem Click="RotateVisualizer_Set" Header="Set Rotasi…" />
+                </MenuItem>
+                <MenuItem Header="Skew">
+                    <MenuItem Click="SkewVisualizer_SetX" Header="Set Skew X…" />
+                    <MenuItem Click="SkewVisualizer_SetY" Header="Set Skew Y…" />
+                </MenuItem>
+                <MenuItem Header="Set Z-Index…" Click="SetVisualizerZIndex" />
+                <Separator />
+                <MenuItem Click="CloseBtn_Click" Header="❌ Exit Widget" />
+            </ContextMenu>
+        </Border.ContextMenu>
+
+        <Viewbox Stretch="Fill">
+            <Canvas
+                x:Name="VisualizerCanvas"
+                Width="350"
+                Height="100"
+                Background="Transparent" />
+        </Viewbox>
+    </Border>
+</UserControl>
