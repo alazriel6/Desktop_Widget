@@ -38,62 +38,56 @@
                 </MenuItem>
                 <MenuItem Header="Set Z-Index…" Click="SetWeatherZIndex" />
 
-
                 <MenuItem Click="CloseBtn_Click" Header="❌ Exit Widget" />
             </ContextMenu>
         </Border.ContextMenu>
 
         <Viewbox Stretch="Uniform">
             <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="100" />
-            </Grid.ColumnDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="100" />
+                </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Column="0" VerticalAlignment="Center">
-                <TextBlock
-                    x:Name="WeatherTemp"
-                    HorizontalAlignment="Left"
-                    FontSize="48"
-                    FontWeight="Bold"
-                    Foreground="White"
-                    Text="+30°C">
-                    
-                </TextBlock>
+                <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                    <TextBlock
+                        x:Name="WeatherTemp"
+                        HorizontalAlignment="Left"
+                        FontSize="48"
+                        FontWeight="Bold"
+                        Foreground="White"
+                        Text="+30°C" />
 
-                <TextBlock
-                    x:Name="WeatherLocation"
-                    Margin="0,0,0,0"
-                    HorizontalAlignment="Left"
-                    FontSize="20"
-                    Foreground="White"
-                    Text="Tokyo" />
+                    <TextBlock
+                        x:Name="WeatherLocation"
+                        HorizontalAlignment="Left"
+                        FontSize="20"
+                        Foreground="White"
+                        Text="Jakarta" />
 
-                <TextBlock
-                    x:Name="WeatherSummary"
-                    Margin="0,0,0,0"
-                    HorizontalAlignment="Left"
-                    FontSize="14"
-                    Foreground="White"
-                    Text="Clear Sky" />
+                    <TextBlock
+                        x:Name="WeatherSummary"
+                        HorizontalAlignment="Left"
+                        FontSize="14"
+                        Foreground="White"
+                        Text="Clear Sky" />
 
-                <TextBlock
-                    x:Name="WeatherDetails"
-                    HorizontalAlignment="Left"
-                    FontSize="12"
-                    Foreground="LightGray"
-                    Text="Humidity 80%, Wind 5km/h" />
-            </StackPanel>
+                    <TextBlock
+                        x:Name="WeatherDetails"
+                        HorizontalAlignment="Left"
+                        FontSize="12"
+                        Foreground="LightGray"
+                        Text="Humidity 80%, Wind 5 m/s" />
+                </StackPanel>
 
-
-            <Image
-                x:Name="WeatherIcon"
-                Grid.Column="1"
-                Width="80"
-                Height="80"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Center"
-                Stretch="Uniform" />
+                <Image
+                    x:Name="WeatherIcon"
+                    Grid.Column="1"
+                    Width="80"
+                    Height="80"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Stretch="Uniform" />
             </Grid>
         </Viewbox>
     </Border>
